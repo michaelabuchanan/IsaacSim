@@ -90,7 +90,7 @@ libdirs {
     extsbuild_dir .. "/omni.usd.core/bin",
     isaac_sim_extsbuild_dir .. "/isaacsim.util.debug_draw/bin",
 }
-links { "isaacsim.util.debug_draw.primitive_drawing", "isaacsim.asset.gen.omap.generator", "omni.usd" }
+links { "isaacsim.util.debug_draw.plugin", "isaacsim.asset.gen.omap.generator", "omni.usd" }
 
 extra_usd_libs = { "usdUtils" }
 
