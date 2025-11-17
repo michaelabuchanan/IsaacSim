@@ -15,7 +15,20 @@
 
 from isaacsim import SimulationApp
 
-simulation_app = SimulationApp({"headless": False})
+# This sample enables a livestream server to connect to when running headless
+CONFIG = {
+    "width": 1280,
+    "height": 720,
+    "window_width": 1920,
+    "window_height": 1080,
+    "headless": True,
+    "hide_ui": False,  # Show the GUI
+    "renderer": "RaytracedLighting",
+    "display_options": 3286,  # Set display options to show default grid
+}
+
+# Start the omniverse application
+simulation_app = SimulationApp(launch_config=CONFIG)
 
 import argparse
 import sys
@@ -29,6 +42,12 @@ from isaacsim.robot.manipulators import SingleManipulator
 from isaacsim.robot.manipulators.examples.franka.controllers.pick_place_controller import PickPlaceController
 from isaacsim.robot.manipulators.grippers import ParallelGripper
 from isaacsim.storage.native import get_assets_root_path
+from isaacsim.core.utils.extensions import enable_extension
+
+# Default Livestream settings
+simulation_app.set_setting("/app/window/drawMouse", True)
+# Enable Livestream extension
+enable_extension("omni.kit.livestream.webrtc")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--test", default=False, action="store_true", help="Run in test mode")
